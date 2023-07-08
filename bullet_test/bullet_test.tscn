@@ -1,9 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cip4rr4nl8qc4"]
+[gd_scene load_steps=9 format=3 uid="uid://cip4rr4nl8qc4"]
 
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="1_d1am6"]
 [ext_resource type="Script" path="res://bullet_test/Joakim.gd" id="2_apdg8"]
+[ext_resource type="Script" path="res://bullet_test/ReloadBar.gd" id="3_580jf"]
+[ext_resource type="PackedScene" uid="uid://dks63h70vllvc" path="res://bullet_test/enemy/enemy_node.tscn" id="4_1vd24"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jscq5"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs43q"]
+bg_color = Color(0, 0.811765, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_058jo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cy8p6"]
+radius = 14.6667
 
 [node name="bullet test" type="Node2D"]
 
@@ -12,7 +23,21 @@ position = Vector2(1051.5, 322.5)
 scale = Vector2(1.17969, 4.66406)
 texture = ExtResource("1_d1am6")
 
-[node name="Joakim" type="CharacterBody2D" parent="."]
+[node name="Health" type="ProgressBar" parent="."]
+offset_left = 503.0
+offset_top = 231.0
+offset_right = 523.0
+offset_bottom = 235.0
+scale = Vector2(5, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_jscq5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qs43q")
+step = 1.0
+show_percentage = false
+script = ExtResource("3_580jf")
+
+[node name="Joakim" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(548, 298)
 scale = Vector2(3, 3)
 script = ExtResource("2_apdg8")
@@ -25,8 +50,10 @@ position = Vector2(-0.0625004, -0.0624999)
 scale = Vector2(0.157227, 0.157227)
 texture = ExtResource("1_d1am6")
 
+[node name="startSearchForBulletsTimer" type="Timer" parent="Joakim"]
+
 [node name="Timer" type="Timer" parent="Joakim"]
-wait_time = 6.0
+wait_time = 3.1
 
 [node name="GunPos" type="Node2D" parent="Joakim"]
 position = Vector2(20.3333, -0.666664)
@@ -37,4 +64,19 @@ position = Vector2(-0.27832, -6.61646)
 scale = Vector2(0.0183112, 0.0578139)
 texture = ExtResource("1_d1am6")
 
+[node name="HitBox" type="Area2D" parent="Joakim"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joakim/HitBox"]
+shape = SubResource("CircleShape2D_cy8p6")
+
+[node name="EnemyNode" parent="." instance=ExtResource("4_1vd24")]
+
+[node name="EnemyNode2" parent="." instance=ExtResource("4_1vd24")]
+position = Vector2(359, 4)
+
+[node name="EnemyNode3" parent="." instance=ExtResource("4_1vd24")]
+position = Vector2(615, 2)
+
+[connection signal="timeout" from="Joakim/startSearchForBulletsTimer" to="Joakim" method="_on_start_search_for_bullets_timer_timeout"]
 [connection signal="timeout" from="Joakim/Timer" to="Joakim" method="_on_timer_timeout"]
+[connection signal="body_entered" from="Joakim/HitBox" to="Joakim" method="_on_hit_box_body_entered"]
