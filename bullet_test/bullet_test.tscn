@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://cip4rr4nl8qc4"]
+
+[ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="1_d1am6"]
+[ext_resource type="Script" path="res://bullet_test/Joakim.gd" id="2_apdg8"]
+[ext_resource type="PackedScene" uid="uid://bmqtjuvs472ld" path="res://bullet_test/bullet/bullet.tscn" id="3_16ach"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_058jo"]
+
+[node name="bullet test" type="Node2D"]
+
+[node name="world" type="Sprite2D" parent="."]
+position = Vector2(1051.5, 322.5)
+scale = Vector2(1.17969, 4.66406)
+texture = ExtResource("1_d1am6")
+
+[node name="Joakim" type="CharacterBody2D" parent="."]
+position = Vector2(548, 298)
+scale = Vector2(3, 3)
+script = ExtResource("2_apdg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Joakim"]
+shape = SubResource("RectangleShape2D_058jo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Joakim"]
+position = Vector2(-0.0625004, -0.0624999)
+scale = Vector2(0.157227, 0.157227)
+texture = ExtResource("1_d1am6")
+
+[node name="Timer" type="Timer" parent="Joakim"]
+wait_time = 6.0
+
+[node name="GunPos" type="Node2D" parent="Joakim"]
+position = Vector2(20.3333, -0.666664)
+rotation = -1.5708
+
+[node name="Icon" type="Sprite2D" parent="Joakim/GunPos"]
+position = Vector2(-0.358887, -6.59326)
+scale = Vector2(0.0183112, 0.0578139)
+texture = ExtResource("1_d1am6")
+
+[node name="bullet" parent="." instance=ExtResource("3_16ach")]
+visible = false
+
+[connection signal="timeout" from="Joakim/Timer" to="Joakim" method="_on_timer_timeout"]
