@@ -10,8 +10,6 @@ const speed_amplifier= 1.002
 var rotation_direction = 0
 
 var switch = 0
-var calledfunction = 0
-var first = 0
 
 @onready var timer = $Timer
 
@@ -37,8 +35,8 @@ func get_input():
 	control.switch.connect(switchbullet)
 
 	
-	if first == 1:
-		rotation_direction = Input.get_axis("ui_left", "ui_right")
+	if get_tree().get_nodes_in_group("bullet").size() < 2:
+		switch = 1
 	
 	if switch == 1:
 		rotation_direction = Input.get_axis("ui_left", "ui_right")
@@ -53,13 +51,9 @@ func _physics_process(delta):
 	rotation_speed = rotation_speed * rotation_speed_amplifier
 	move_and_slide()
 	
-func firsttime():
-	first = 1
-	
 func switchbullet():
-	if calledfunction == 0:
+	if switch == 0:
 		switch = 1
-		calledfunction = 1
 	else:
 		switch = 0
 
