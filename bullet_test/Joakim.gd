@@ -58,5 +58,5 @@ func _on_timer_timeout():
 func spawn_bullet():
 	var bullet = loadBullet.instantiate()
 	bullet.position = gun_pos.global_position
-	bullet.rotation = self.global_rotation - 90
+	bullet.look_at(location)
 	get_window().call_deferred("add_child", bullet)

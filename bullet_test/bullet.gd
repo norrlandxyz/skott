@@ -34,7 +34,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
-	velocity = transform.y * speed
+	velocity = transform.x * speed
 	speed = speed * speed_amplifier
 	rotation_speed = rotation_speed * rotation_speed_amplifier
 	move_and_slide()

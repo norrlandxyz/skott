@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g6jx"]
 
 [node name="bullet" type="CharacterBody2D"]
-scale = Vector2(1.5, 2)
+scale = Vector2(2, 1.5)
 script = ExtResource("1_jf1js")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
