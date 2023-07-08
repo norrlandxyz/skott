@@ -9,6 +9,10 @@ const speed_amplifier= 1.002
 
 var rotation_direction = 0
 
+var switch = 0
+var calledfunction = 0
+var first = 0
+
 @onready var timer = $Timer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -21,7 +25,7 @@ func _ready():
 func _input(event):
 	#self_destruct is equal to space key
 	if event.is_action_pressed("self_destruct"):
-		self_destruct()
+		pass
 
 #destroys current bullet
 func self_destruct():
@@ -29,8 +33,18 @@ func self_destruct():
 
 #function process input
 func get_input():
-	rotation_direction = Input.get_axis("ui_left", "ui_right")
+	var control = get_tree().get_nodes_in_group("control")[0]
+	control.switch.connect(switchbullet)
 
+	
+	if first == 1:
+		rotation_direction = Input.get_axis("ui_left", "ui_right")
+	
+	if switch == 1:
+		rotation_direction = Input.get_axis("ui_left", "ui_right")
+	else:
+		pass
+	
 func _physics_process(delta):
 	get_input()
 	rotation += rotation_direction * rotation_speed * delta
@@ -38,7 +52,16 @@ func _physics_process(delta):
 	speed = speed * speed_amplifier
 	rotation_speed = rotation_speed * rotation_speed_amplifier
 	move_and_slide()
-
+	
+func firsttime():
+	first = 1
+	
+func switchbullet():
+	if calledfunction == 0:
+		switch = 1
+		calledfunction = 1
+	else:
+		switch = 0
 
 func _on_timer_timeout():
 	self_destruct()

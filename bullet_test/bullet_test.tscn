@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cip4rr4nl8qc4"]
+[gd_scene load_steps=10 format=3 uid="uid://cip4rr4nl8qc4"]
 
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="1_d1am6"]
+[ext_resource type="PackedScene" uid="uid://crx8mcjle3skh" path="res://bullet_test/bullet_controller.tscn" id="1_q6md1"]
 [ext_resource type="Script" path="res://bullet_test/Joakim.gd" id="2_apdg8"]
 [ext_resource type="Script" path="res://bullet_test/ReloadBar.gd" id="3_580jf"]
 [ext_resource type="PackedScene" uid="uid://dks63h70vllvc" path="res://bullet_test/enemy/enemy_node.tscn" id="4_1vd24"]
@@ -17,6 +18,8 @@ bg_color = Color(0, 0.811765, 0, 1)
 radius = 14.6667
 
 [node name="bullet test" type="Node2D"]
+
+[node name="BulletController" parent="." groups=["control"] instance=ExtResource("1_q6md1")]
 
 [node name="world" type="Sprite2D" parent="."]
 position = Vector2(1051.5, 322.5)
