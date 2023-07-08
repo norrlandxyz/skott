@@ -19,6 +19,8 @@ var switch = 0
 
 func _ready():
 	timer.start()
+	var control = get_tree().get_nodes_in_group("control")[0]
+	control.switch.connect(switchbullet)
 
 func _input(event):
 	#self_destruct is equal to space key
@@ -31,8 +33,6 @@ func self_destruct():
 
 #function process input
 func get_input():
-	var control = get_tree().get_nodes_in_group("control")[0]
-	control.switch.connect(switchbullet)
 
 	
 	if get_tree().get_nodes_in_group("bullet").size() < 2:
