@@ -65,7 +65,6 @@ func randomRotation(delta):
 	#rotation += rotation_direction * rotation_speed * delta
 	look_at(location)
 
-
 func _on_timer_timeout():
 	spawn_bullet()
 	timer.start()
