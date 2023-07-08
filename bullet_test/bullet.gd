@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 @export var speed = 80
 @export var rotation_speed = 1.5
 
@@ -20,7 +19,7 @@ var switch = 0
 func _ready():
 	timer.start()
 	var control = get_tree().get_nodes_in_group("control")[0]
-	control.switch.connect(switchbullet)
+	control.on.connect(switchbullet)
 
 func _input(event):
 	#self_destruct is equal to space key
@@ -33,15 +32,13 @@ func self_destruct():
 
 #function process input
 func get_input():
-
+	var bullets = get_tree().get_nodes_in_group("bullet")
 	
-	if get_tree().get_nodes_in_group("bullet").size() < 2:
+	if bullets.size() < 2:
 		switch = 1
 	
 	if switch == 1:
 		rotation_direction = Input.get_axis("ui_left", "ui_right")
-	else:
-		pass
 	
 func _physics_process(delta):
 	get_input()
@@ -51,9 +48,12 @@ func _physics_process(delta):
 	rotation_speed = rotation_speed * rotation_speed_amplifier
 	move_and_slide()
 	
-func switchbullet():
-	if switch == 0:
-		switch = 1
+func switchbullet(bullet):
+	var bullets = get_tree().get_nodes_in_group("bullet")
+	
+	if bullets[bullet] == self:
+		if switch == 0:
+			switch = 1
 	else:
 		switch = 0
 
