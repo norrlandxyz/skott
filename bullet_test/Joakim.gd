@@ -97,9 +97,12 @@ func take_damage(dmg):
 	health -= dmg
 	if health < 0:
 		var bullets = get_tree().get_nodes_in_group("bullet")
+		var enemey_bullets = get_tree().get_nodes_in_group("enemy_bullet")
 		var big_bullets = get_tree().get_nodes_in_group("big_enemy_bullet")
 		for bullet in bullets:
 			bullet.queue_free()
+		for enemey_bullet in enemey_bullets:
+			enemey_bullet.queue_free()
 		for big_bullet in big_bullets:
 			big_bullet.queue_free()
 		get_tree().paused = true
@@ -123,12 +126,9 @@ func _on_wall_box_body_entered(body):
 	if !body.is_in_group("bullet") and !body.is_in_group("player"):
 		location = randomLocation()
 	
-
-
 func _on_wall_box_area_entered(area):
 	if !area.is_in_group("bullet") and !area.is_in_group("player"):
 		location = randomLocation()
-
 
 func _on_new_direction_timeout():
 	location = randomLocation()
