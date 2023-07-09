@@ -1,7 +1,13 @@
 extends CharacterBody2D
 
 const SPEED = 100.0
-var location = randomLocation(1000, 0, 600, 0)
+
+@export var maxX = 0
+@export var minX = 0
+@export var maxY = 0
+@export var minY = 0
+
+var location = randomLocation()
 
 var rotation_weight = 1
 var rotation_speed = PI
@@ -22,6 +28,7 @@ var bullet_id = 1
 
 
 func _ready():
+	location = randomLocation()
 	#spawn_bullet()
 	health_bar.max_value = health
 	health_bar.value = health
@@ -38,14 +45,14 @@ func _physics_process(delta):
 	var velocity = (location - global_position).normalized() * SPEED
 	move_and_collide(velocity * delta)
 	if global_position.distance_to(location) < 200:
-		location = randomLocation(1000, 0, 600, 0)
+		location = randomLocation()
 	
 	#otherwise bullets will start spawning before the player has had a chance to move,
 	#will result in weird bullet spawning behaviour
 	if start_search_for_bullets == true:
 		searchForBullets()
 
-func randomLocation(maxX, minX, maxY, minY):
+func randomLocation():
 	var randomX = randi_range(minX, maxX)
 	var randomY = randi_range(minY, maxY)
 	
@@ -94,7 +101,6 @@ func _on_start_search_for_bullets_timer_timeout():
 	start_search_for_bullets = true;
 
 func _on_hit_box_body_entered(body):
-	print("Player:" + str(body) + " entered enemy space!")
 	if body.is_in_group("enemy_bullet"):
 		body.self_destruct()
 		take_damage(20)

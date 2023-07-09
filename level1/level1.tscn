@@ -95,6 +95,11 @@ show_percentage = false
 script = ExtResource("3_fib1i")
 
 [node name="Joakim" parent="." instance=ExtResource("4_xjhpx")]
+position = Vector2(554, 283)
+maxX = 1800
+minX = 330
+maxY = 500
+minY = 380
 
 [node name="EnemyNode" parent="." instance=ExtResource("5_cfbuw")]
 position = Vector2(1615, 35)
