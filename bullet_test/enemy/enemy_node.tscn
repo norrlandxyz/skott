@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dks63h70vllvc"]
+[gd_scene load_steps=14 format=3 uid="uid://dks63h70vllvc"]
 
 [ext_resource type="Script" path="res://bullet_test/EnemyHealth.gd" id="1_3borg"]
 [ext_resource type="Script" path="res://bullet_test/Enemy.gd" id="2_gastu"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="3_pswj2"]
 [ext_resource type="Texture2D" uid="uid://cjcj8xm7rdfql" path="res://texture_test/enemysheet..png" id="4_cqwrq"]
+[ext_resource type="Texture2D" uid="uid://f4a4v3crcs40" path="res://pistol.png" id="4_jea7h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgauv"]
 bg_color = Color(0, 0, 0, 1)
@@ -67,6 +68,7 @@ script = ExtResource("2_gastu")
 position = Vector2(20, 0.333332)
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy/gunPoint"]
+visible = false
 position = Vector2(-6, 0)
 rotation = -1.5708
 scale = Vector2(0.0272989, 0.0693636)
@@ -74,6 +76,12 @@ texture = ExtResource("3_pswj2")
 
 [node name="gunEnemyTimer" type="Timer" parent="Enemy/gunPoint"]
 wait_time = 3.0
+
+[node name="Pistol" type="Sprite2D" parent="Enemy/gunPoint"]
+position = Vector2(-6.33334, 0)
+rotation = -1.5708
+scale = Vector2(1.50535, 1.72131)
+texture = ExtResource("4_jea7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("RectangleShape2D_7eo2k")

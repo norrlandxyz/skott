@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bm0h2lwhkoqcw"]
+[gd_scene load_steps=14 format=3 uid="uid://bm0h2lwhkoqcw"]
 
 [ext_resource type="Texture2D" uid="uid://cxsqb0siqmrad" path="res://level1/world.png" id="1_hq0k0"]
 [ext_resource type="PackedScene" uid="uid://crx8mcjle3skh" path="res://bullet_test/bullet_controller.tscn" id="2_h8l35"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dlbbyuregrt5s" path="res://player/joakim.tscn" id="4_hy7jv"]
 [ext_resource type="PackedScene" uid="uid://dks63h70vllvc" path="res://bullet_test/enemy/enemy_node.tscn" id="6_6rh0s"]
 [ext_resource type="PackedScene" uid="uid://drosq0e1of16e" path="res://winner.tscn" id="7_rwhqi"]
+[ext_resource type="PackedScene" uid="uid://b6hc44qmbffi3" path="res://theme.tscn" id="8_rllon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tyf4"]
 texture = ExtResource("1_hq0k0")
@@ -141,3 +142,6 @@ position = Vector2(990, 580)
 
 [node name="winner" parent="." instance=ExtResource("7_rwhqi")]
 position = Vector2(1019, 319)
+
+[node name="theme" parent="." instance=ExtResource("8_rllon")]
+position = Vector2(478, 436)
