@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dff76ywti7wdn"]
+[gd_scene load_steps=5 format=3 uid="uid://dff76ywti7wdn"]
 
 [ext_resource type="Script" path="res://menu/menu.gd" id="1_hrfwn"]
+[ext_resource type="Texture2D" uid="uid://bfgdr5drtcnxx" path="res://texture_test/bullet_small_sheet..png" id="2_dx3q2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qooxc"]
+atlas = ExtResource("2_dx3q2")
+region = Rect2(0, 0, 7, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkmhn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qooxc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -25,12 +41,21 @@ offset_bottom = 206.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
-text = "[center]Skott[/center]"
+text = "     Skott"
 fit_content = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/HBoxContainer"]
+position = Vector2(33, 35.5)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_bkmhn")
 
 [node name="Start" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -40,7 +65,7 @@ text = "Start"
 [node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 38
-text = "Settings
+text = "About
 "
 
 [node name="Exit" type="Button" parent="VBoxContainer"]

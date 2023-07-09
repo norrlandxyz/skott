@@ -1,12 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhsn0gksobddg"]
+[gd_scene load_steps=8 format=3 uid="uid://dhsn0gksobddg"]
 
 [ext_resource type="Script" path="res://bullet_test/EnemyBullet.gd" id="1_817qf"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="2_qvyqr"]
+[ext_resource type="Texture2D" uid="uid://cwta28xwqapsh" path="res://texture_test/bullet_enemy.png" id="3_157mr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nxntv"]
 bg_color = Color(0.737255, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjr6r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7osj4"]
+atlas = ExtResource("3_157mr")
+region = Rect2(0, 0, 5, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5fq6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7osj4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="EnemyBullet" type="CharacterBody2D" groups=["enemy_bullet"]]
 position = Vector2(397, 168)
@@ -14,10 +30,12 @@ scale = Vector2(1.5, 1)
 script = ExtResource("1_817qf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.160001, 0.16)
 texture = ExtResource("2_qvyqr")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -10.0
 offset_top = -10.0
 offset_right = -6.0
@@ -28,3 +46,7 @@ show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_yjr6r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_q5fq6")

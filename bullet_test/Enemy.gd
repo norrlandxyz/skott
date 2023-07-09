@@ -19,7 +19,8 @@ func _physics_process(delta):
 func _on_hitbox_body_entered(body):
 	print("Enemy:" + str(body) + " entered enemy space!")
 	if body.is_in_group("bullet"):
-		body.queue_free()
+		body.self_destruct(); #Function in bullet
+		#body.queue_free()
 		take_damage(50)
 
 func take_damage(dmg):
