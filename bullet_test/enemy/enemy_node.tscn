@@ -44,7 +44,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyNode" type="Node2D"]
+[node name="EnemyNode" type="Node2D" groups=["enemy"]]
 
 [node name="EnemyHealth" type="ProgressBar" parent="."]
 offset_left = 36.0
