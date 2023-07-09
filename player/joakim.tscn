@@ -48,7 +48,7 @@ texture = ExtResource("2_7aphf")
 [node name="startSearchForBulletsTimer" type="Timer" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.1
+wait_time = 3.2
 
 [node name="GunPos" type="Node2D" parent="."]
 position = Vector2(20.3333, -0.666664)

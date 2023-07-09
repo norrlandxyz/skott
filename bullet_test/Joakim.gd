@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
-@export var maxX = 0
-@export var minX = 0
-@export var maxY = 0
-@export var minY = 0
+@export var maxX = 1500
+@export var minX = 600
+@export var maxY = 900
+@export var minY = 10
 
 var location = randomLocation()
 
