@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pwmx"]
-size = Vector2(36, 52)
+size = Vector2(36, 38)
 
 [node name="bullet" type="CharacterBody2D" groups=["bullet"]]
 scale = Vector2(2, 1.5)
@@ -87,7 +87,7 @@ scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_87ibu")
 
 [node name="InitialTimer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 5.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3.2, 4)
@@ -97,12 +97,12 @@ sprite_frames = SubResource("SpriteFrames_qpydv")
 position = Vector2(16.5, 0)
 
 [node name="FinalTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 
 [node name="bulletFinder" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bulletFinder"]
-position = Vector2(1, 1.33333)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0pwmx")
 
 [connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]

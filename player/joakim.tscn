@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlbbyuregrt5s"]
+[gd_scene load_steps=10 format=3 uid="uid://dlbbyuregrt5s"]
 
 [ext_resource type="Script" path="res://bullet_test/Joakim.gd" id="1_1goa0"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="2_7aphf"]
@@ -31,6 +31,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_30i3k"]
+radius = 18.6934
+
 [node name="Joakim" type="CharacterBody2D" groups=["player"]]
 position = Vector2(548, 298)
 scale = Vector2(3, 3)
@@ -48,7 +51,7 @@ texture = ExtResource("2_7aphf")
 [node name="startSearchForBulletsTimer" type="Timer" parent="."]
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.1
+wait_time = 3.2
 
 [node name="GunPos" type="Node2D" parent="."]
 position = Vector2(20.3333, -0.666664)
@@ -68,6 +71,18 @@ shape = SubResource("CircleShape2D_cy8p6")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_if4rm")
 
+[node name="WallBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBox"]
+shape = SubResource("CircleShape2D_30i3k")
+
+[node name="NewDirection" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="startSearchForBulletsTimer" to="." method="_on_start_search_for_bullets_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="area_entered" from="WallBox" to="." method="_on_wall_box_area_entered"]
+[connection signal="body_entered" from="WallBox" to="." method="_on_wall_box_body_entered"]
+[connection signal="timeout" from="NewDirection" to="." method="_on_new_direction_timeout"]

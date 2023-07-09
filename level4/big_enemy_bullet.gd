@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var joakim = null
 
-@export var speed = 50
+@export var speed = 70
 @export var rotation_speed = 1.5
 
 const rotation_speed_amplifier = 1.002
@@ -36,5 +36,5 @@ func self_destruct():
 	queue_free()
 
 func _on_collisiondetector_body_entered(body):
-	if !body.is_in_group("enemy") && !body.is_in_group("enemy_bullet") && !body.is_in_group("player"):
+	if !body.is_in_group("enemy") && !body.is_in_group("big_enemy_bullet") && !body.is_in_group("player"):
 		self_destruct()

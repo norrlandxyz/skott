@@ -39,7 +39,8 @@ text = "Controls:
 - Rotate left/right: Arrow Keys
 - Switch between bullets: Tab
 
-Developed by Joakim & Robin."
+Developed by Joakim & Robin.
+Music by Carl."
 fit_content = true
 
 [node name="Button" type="Button" parent="VBoxContainer"]
