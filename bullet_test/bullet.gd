@@ -82,7 +82,10 @@ func _physics_process(delta):
 func _on_initial_timer_timeout():
 	#self_destruct()
 	about_to_explode = true
-	animated_sprite_2d.play("about_to_explode")
+	if !is_controlling:
+		animated_sprite_2d.play("about_to_explode")
+	else:
+		animated_sprite_2d.play("about_to_explode_and_selected")
 	final_timer.start()
 
 func start_controlls():
@@ -105,3 +108,9 @@ func stop_controlls():
 
 func _on_final_timer_timeout():
 	self_destruct()
+
+
+func _on_bullet_finder_body_entered(body):
+	if body.is_in_group("enemy_bullet"):
+		body.queue_free()
+		self_destruct()

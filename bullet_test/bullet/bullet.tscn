@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmqtjuvs472ld"]
+[gd_scene load_steps=13 format=3 uid="uid://bmqtjuvs472ld"]
 
 [ext_resource type="Script" path="res://bullet_test/bullet.gd" id="1_jf1js"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="2_87ibu"]
@@ -71,6 +71,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pwmx"]
+size = Vector2(36, 52)
+
 [node name="bullet" type="CharacterBody2D" groups=["bullet"]]
 scale = Vector2(2, 1.5)
 script = ExtResource("1_jf1js")
@@ -96,6 +99,13 @@ position = Vector2(16.5, 0)
 [node name="FinalTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="bulletFinder" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bulletFinder"]
+position = Vector2(1, 1.33333)
+shape = SubResource("RectangleShape2D_0pwmx")
+
 [connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="FinalTimer" to="." method="_on_final_timer_timeout"]
+[connection signal="body_entered" from="bulletFinder" to="." method="_on_bullet_finder_body_entered"]
