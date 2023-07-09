@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
-@export var maxX = 0
-@export var minX = 0
-@export var maxY = 0
-@export var minY = 0
+@export var maxX = 1500
+@export var minX = 600
+@export var maxY = 900
+@export var minY = 10
 
 var location = randomLocation()
 
@@ -94,7 +94,7 @@ func searchForBullets():
 func take_damage(dmg):
 	health -= dmg
 	if health < 0:
-		print("joakim dead")
+		get_tree().change_scene_to_file("res://menu/death.tscn")
 	health_bar.value = health
 
 func _on_start_search_for_bullets_timer_timeout():
