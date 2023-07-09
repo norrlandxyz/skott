@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://yy6knxaxlarm"]
+[gd_scene load_steps=11 format=3 uid="uid://yy6knxaxlarm"]
 
 [ext_resource type="Texture2D" uid="uid://cxsqb0siqmrad" path="res://level1/world.png" id="1_2xaua"]
 [ext_resource type="PackedScene" uid="uid://crx8mcjle3skh" path="res://bullet_test/bullet_controller.tscn" id="2_ai08j"]
 [ext_resource type="Script" path="res://bullet_test/ReloadBar.gd" id="3_1y6pe"]
 [ext_resource type="PackedScene" uid="uid://dlbbyuregrt5s" path="res://player/joakim.tscn" id="4_mfaec"]
 [ext_resource type="PackedScene" uid="uid://dks63h70vllvc" path="res://bullet_test/enemy/enemy_node.tscn" id="5_ob1y5"]
+[ext_resource type="PackedScene" uid="uid://drosq0e1of16e" path="res://winner.tscn" id="6_5be5a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tyf4"]
 texture = ExtResource("1_2xaua")
@@ -108,3 +109,6 @@ position = Vector2(0, 730)
 
 [node name="EnemyNode4" parent="." instance=ExtResource("5_ob1y5")]
 position = Vector2(1269, 498)
+
+[node name="winner" parent="." instance=ExtResource("6_5be5a")]
+position = Vector2(1042, 590)

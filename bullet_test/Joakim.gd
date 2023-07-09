@@ -2,10 +2,12 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
-@export var maxX = 1500
+@export var maxX = 1000
 @export var minX = 600
 @export var maxY = 900
 @export var minY = 10
+
+var dying = false
 
 var location = randomLocation()
 
@@ -94,8 +96,16 @@ func searchForBullets():
 func take_damage(dmg):
 	health -= dmg
 	if health < 0:
+		var bullets = get_tree().get_nodes_in_group("bullet")
+		var big_bullets = get_tree().get_nodes_in_group("big_enemy_bullet")
+		for bullet in bullets:
+			bullet.queue_free()
+		for big_bullet in big_bullets:
+			big_bullet.queue_free()
+		get_tree().paused = true
 		get_tree().change_scene_to_file("res://menu/death.tscn")
 	health_bar.value = health
+
 
 func _on_start_search_for_bullets_timer_timeout():
 	start_search_for_bullets = true;
@@ -107,3 +117,18 @@ func _on_hit_box_body_entered(body):
 	elif body.is_in_group("big_enemy_bullet"):
 		body.self_destruct()
 		take_damage(30)
+
+
+func _on_wall_box_body_entered(body):
+	if !body.is_in_group("bullet") and !body.is_in_group("player"):
+		location = randomLocation()
+	
+
+
+func _on_wall_box_area_entered(area):
+	if !area.is_in_group("bullet") and !area.is_in_group("player"):
+		location = randomLocation()
+
+
+func _on_new_direction_timeout():
+	location = randomLocation()

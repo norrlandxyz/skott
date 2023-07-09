@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0pwmx"]
-size = Vector2(36, 52)
+size = Vector2(36, 38)
 
 [node name="bullet" type="CharacterBody2D" groups=["bullet"]]
 scale = Vector2(2, 1.5)
@@ -102,7 +102,7 @@ wait_time = 4.0
 [node name="bulletFinder" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bulletFinder"]
-position = Vector2(1, 1.33333)
+position = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0pwmx")
 
 [connection signal="timeout" from="InitialTimer" to="." method="_on_initial_timer_timeout"]

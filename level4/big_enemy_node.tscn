@@ -14,6 +14,7 @@ bg_color = Color(0.894118, 0.0862745, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eo2k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rt6mx"]
+radius = 14.4
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vcjej"]
 atlas = ExtResource("4_f30qv")
@@ -54,11 +55,12 @@ offset_bottom = 615.0
 scale = Vector2(56.3579, -13.0096)
 theme_override_styles/background = SubResource("StyleBoxFlat_hgauv")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rjaae")
+max_value = 5000.0
 step = 1.0
 show_percentage = false
 script = ExtResource("1_b248k")
 
-[node name="BigEnemy" type="CharacterBody2D" parent="."]
+[node name="BigEnemy" type="CharacterBody2D" parent="." groups=["enemy"]]
 position = Vector2(184, 95)
 scale = Vector2(10, 10)
 script = ExtResource("2_h2j3c")
@@ -86,7 +88,6 @@ texture = ExtResource("3_mnmku")
 [node name="Hitbox" type="Area2D" parent="BigEnemy"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigEnemy/Hitbox"]
-scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_rt6mx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BigEnemy"]
