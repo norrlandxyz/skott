@@ -24,7 +24,7 @@ func _ready():
 	#timer.start()
 
 func _physics_process(delta):
-	var velocity = (joakim.global_position - global_position).normalized() * speed
+	velocity = (joakim.global_position - global_position).normalized() * speed
 	move_and_collide(velocity * delta)
 	look_at(joakim.global_position)
 

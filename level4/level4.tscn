@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0smed8ulymm7"]
+[gd_scene load_steps=13 format=3 uid="uid://d0smed8ulymm7"]
 
 [ext_resource type="Texture2D" uid="uid://cxsqb0siqmrad" path="res://level1/world.png" id="1_6y3ra"]
 [ext_resource type="Texture2D" uid="uid://coqectlhpfhy1" path="res://level3/sidewall.png" id="2_o0ivi"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://bullet_test/ReloadBar.gd" id="4_5vahm"]
 [ext_resource type="PackedScene" uid="uid://dlbbyuregrt5s" path="res://player/joakim.tscn" id="5_nyabx"]
 [ext_resource type="PackedScene" uid="uid://c5rshnry1jh7r" path="res://level4/big_enemy_node.tscn" id="6_bn3gs"]
+[ext_resource type="PackedScene" uid="uid://drosq0e1of16e" path="res://winner.tscn" id="7_bbgy1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3tyf4"]
 texture = ExtResource("1_6y3ra")
@@ -119,3 +120,6 @@ position = Vector2(1342, 304)
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(1746, 927)
+
+[node name="winner" parent="." instance=ExtResource("7_bbgy1")]
+position = Vector2(755, 526)
