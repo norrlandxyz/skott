@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dks63h70vllvc"]
+[gd_scene load_steps=13 format=3 uid="uid://dks63h70vllvc"]
 
 [ext_resource type="Script" path="res://bullet_test/EnemyHealth.gd" id="1_3borg"]
 [ext_resource type="Script" path="res://bullet_test/Enemy.gd" id="2_gastu"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="3_pswj2"]
+[ext_resource type="Texture2D" uid="uid://cjcj8xm7rdfql" path="res://texture_test/enemysheet..png" id="4_cqwrq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgauv"]
 bg_color = Color(0, 0, 0, 1)
@@ -13,6 +14,35 @@ bg_color = Color(0.894118, 0.0862745, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7eo2k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rt6mx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcjej"]
+atlas = ExtResource("4_cqwrq")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmsyd"]
+atlas = ExtResource("4_cqwrq")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwl3y"]
+atlas = ExtResource("4_cqwrq")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vtkoj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcjej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmsyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwl3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="EnemyNode" type="Node2D"]
 
@@ -49,6 +79,7 @@ wait_time = 3.0
 shape = SubResource("RectangleShape2D_7eo2k")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+visible = false
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("3_pswj2")
 
@@ -57,6 +88,11 @@ texture = ExtResource("3_pswj2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Hitbox"]
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_rt6mx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_vtkoj")
+frame_progress = 0.743591
 
 [connection signal="timeout" from="Enemy/gunPoint/gunEnemyTimer" to="Enemy" method="_on_gun_enemy_timer_timeout"]
 [connection signal="body_entered" from="Enemy/Hitbox" to="Enemy" method="_on_hitbox_body_entered"]

@@ -61,4 +61,5 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 38
 text = "Back"
 
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level 1" to="." method="_on_level_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

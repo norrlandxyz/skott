@@ -18,6 +18,8 @@ var loadBullet = preload("res://bullet_test/bullet/bullet.tscn")
 @onready var start_search_for_bullets_timer = $startSearchForBulletsTimer
 @export var start_search_for_bullets = false;
 
+var bullet_id = 1
+
 
 func _ready():
 	#spawn_bullet()
@@ -73,6 +75,10 @@ func spawn_bullet():
 	var bullet = loadBullet.instantiate()
 	bullet.position = gun_pos.global_position
 	bullet.look_at(location)
+	#sets unique id for bullet
+	#bullet.bullet_id = bullet_id
+	#increases next bullet_id by 1
+	bullet_id += 1
 	get_window().call_deferred("add_child", bullet)
 
 func searchForBullets():
