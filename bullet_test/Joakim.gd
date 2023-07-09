@@ -28,9 +28,7 @@ func _ready():
 	timer.start()
 	start_search_for_bullets_timer.start()
 
-
 func _physics_process(delta):
-
 	#rotation
 	randomRotation(delta)
 	
@@ -92,13 +90,11 @@ func take_damage(dmg):
 		print("joakim dead")
 	health_bar.value = health
 
-
 func _on_start_search_for_bullets_timer_timeout():
 	start_search_for_bullets = true;
-
 
 func _on_hit_box_body_entered(body):
 	print("Player:" + str(body) + " entered enemy space!")
 	if body.is_in_group("enemy_bullet"):
-		body.queue_free()
+		body.self_destruct()
 		take_damage(10)

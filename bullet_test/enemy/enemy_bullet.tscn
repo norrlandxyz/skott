@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhsn0gksobddg"]
+[gd_scene load_steps=9 format=3 uid="uid://dhsn0gksobddg"]
 
 [ext_resource type="Script" path="res://bullet_test/EnemyBullet.gd" id="1_817qf"]
 [ext_resource type="Texture2D" uid="uid://43tek07dr3l7" path="res://icon.svg" id="2_qvyqr"]
@@ -8,6 +8,7 @@
 bg_color = Color(0.737255, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yjr6r"]
+size = Vector2(22.6667, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7osj4"]
 atlas = ExtResource("3_157mr")
@@ -23,6 +24,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aetd6"]
+size = Vector2(26, 20)
 
 [node name="EnemyBullet" type="CharacterBody2D" groups=["enemy_bullet"]]
 position = Vector2(397, 168)
@@ -45,8 +49,20 @@ theme_override_styles/background = SubResource("StyleBoxFlat_nxntv")
 show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.33334, 0)
 shape = SubResource("RectangleShape2D_yjr6r")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_q5fq6")
+
+[node name="Collisiondetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisiondetector"]
+position = Vector2(0.333313, 0)
+shape = SubResource("RectangleShape2D_aetd6")
+
+[node name="explosion_pos" type="Node2D" parent="."]
+position = Vector2(14.6667, 0)
+
+[connection signal="body_entered" from="Collisiondetector" to="." method="_on_collisiondetector_body_entered"]
