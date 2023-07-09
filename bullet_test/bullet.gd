@@ -10,16 +10,31 @@ var rotation_direction = 0
 
 var switch = 0
 
-@onready var timer = $Timer
+var destroy_self = false
+var destroy_called = false
+
+#const bullet_id = null
+
+var is_controlling = false
+
+var about_to_explode = false
+
+@onready var initial_timer = $InitialTimer
+@onready var final_timer = $FinalTimer
+
+@onready var animated_sprite_2d = $AnimatedSprite2D
+
+var loadExplosion = preload("res://bullet_test/explosion/explosion.tscn")
+@onready var explosion_pos = $explosion_pos
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 
 func _ready():
-	timer.start()
+	initial_timer.start()
 	var control = get_tree().get_nodes_in_group("control")[0]
-	control.on.connect(switchbullet)
+	#control.on.connect(switchbullet)
 
 func _input(event):
 	#self_destruct is equal to space key
@@ -28,17 +43,24 @@ func _input(event):
 
 #destroys current bullet
 func self_destruct():
+	var explosion = loadExplosion.instantiate()
+	explosion.global_position = explosion_pos.global_position
+	#explosion.look_at(joakim.global_position)
+	get_window().call_deferred("add_child", explosion)
 	queue_free()
 
 #function process input
 func get_input():
-	var bullets = get_tree().get_nodes_in_group("bullet")
-	
-	if bullets.size() < 2:
-		switch = 1
-	
-	if switch == 1:
+	if is_controlling:
+		#var bullets = get_tree().get_nodes_in_group("bullet")
+		
+		#if bullets.size() < 2:
+		#	switch = 1
+		
+		#if switch == 1:
 		rotation_direction = Input.get_axis("ui_left", "ui_right")
+	else: 
+		rotation_direction = 0
 	
 func _physics_process(delta):
 	get_input()
@@ -48,14 +70,38 @@ func _physics_process(delta):
 	rotation_speed = rotation_speed * rotation_speed_amplifier
 	move_and_slide()
 	
-func switchbullet(bullet):
-	var bullets = get_tree().get_nodes_in_group("bullet")
+#func switchbullet(bullet):
+	#var bullets = get_tree().get_nodes_in_group("bullet")
 	
-	if bullets[bullet] == self:
-		if switch == 0:
-			switch = 1
-	else:
-		switch = 0
+	#if bullets[bullet] == self:
+	#	if switch == 0:
+	#		switch = 1
+	#else:
+	#	switch = 0
 
-func _on_timer_timeout():
+func _on_initial_timer_timeout():
+	#self_destruct()
+	about_to_explode = true
+	animated_sprite_2d.play("about_to_explode")
+	final_timer.start()
+
+func start_controlls():
+	is_controlling = true
+	if !about_to_explode:
+		animated_sprite_2d.play("selected")
+	else:
+		animated_sprite_2d.play("about_to_explode_and_selected")
+
+func stop_controlls():
+	is_controlling = false
+	if !about_to_explode:
+		animated_sprite_2d.play("default")
+	else:
+		animated_sprite_2d.play("about_to_explode")
+
+
+
+
+
+func _on_final_timer_timeout():
 	self_destruct()
