@@ -103,4 +103,7 @@ func _on_start_search_for_bullets_timer_timeout():
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("enemy_bullet"):
 		body.self_destruct()
-		take_damage(10)
+		take_damage(20)
+	elif body.is_in_group("big_enemy_bullet"):
+		body.self_destruct()
+		take_damage(30)
