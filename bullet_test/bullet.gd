@@ -102,15 +102,12 @@ func stop_controlls():
 	else:
 		animated_sprite_2d.play("about_to_explode")
 
-
-
-
-
 func _on_final_timer_timeout():
 	self_destruct()
-
 
 func _on_bullet_finder_body_entered(body):
 	if body.is_in_group("enemy_bullet"):
 		body.queue_free()
+		self_destruct()
+	if !body.is_in_group("bullet") && !body.is_in_group("player"):
 		self_destruct()
