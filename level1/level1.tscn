@@ -60,6 +60,7 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0, 0.811765, 0, 1)
 
 [node name="level1" type="Node2D"]
+position = Vector2(45, 195)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1092, 280)

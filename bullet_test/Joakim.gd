@@ -94,7 +94,7 @@ func searchForBullets():
 func take_damage(dmg):
 	health -= dmg
 	if health < 0:
-		print("joakim dead")
+		get_tree().change_scene_to_file("res://menu/death.tscn")
 	health_bar.value = health
 
 func _on_start_search_for_bullets_timer_timeout():
