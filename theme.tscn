@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6hc44qmbffi3"]
-
-[ext_resource type="AudioStream" uid="uid://dqk1oofslanms" path="res://theme.ogg" id="1_ljobk"]
-
-[node name="theme" type="AudioStreamPlayer2D"]
-stream = ExtResource("1_ljobk")
-volume_db = -20.0
-autoplay = true
